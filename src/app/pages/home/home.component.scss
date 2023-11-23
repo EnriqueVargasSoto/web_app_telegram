@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-left: 10px;
+}
+
+.col {
+  width: calc(33.33% - 10px); /* Ancho de columna con espacio entre ellas */
+  margin-right: 10px; /* Espacio entre columnas */
+  margin-bottom: 20px; /* Espacio entre filas */
+  float: left;
+}
+
+.producto-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.texto-truncado {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /* Muestra el texto en 2 líneas */
+  line-height: 1.4em; /* Altura de línea para ajustar el espacio entre líneas */
+  max-height: 2.8em; /* Máxima altura permitida (2 líneas * altura de línea) */
+}
