@@ -11,6 +11,7 @@ import { Category } from 'src/app/models/Category.model';
 export class HomeComponent {
 
   listCategories : Category[] = [];
+  isLoading: boolean = true;
 
   pagination: number = 0;
   filtro: string = "";
@@ -23,8 +24,12 @@ export class HomeComponent {
   async ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    this.isLoading = true;
     await this.getCategories();
-    await this.getProducts();
+    await this.getProducts().then((resp) => {
+      this.isLoading = false;
+    });
+    //
   }
 
   async getProducts() {
@@ -60,5 +65,27 @@ export class HomeComponent {
       this.listCategories.push(...resp['categoria']);
       console.log(this.listCategories);
     });
+  }
+
+  async selectCategoria()  {
+    this.products = [];
+    this.isLoading = true;
+    //await this.getCategories();
+    await this.getProducts().then((resp) => {
+      this.isLoading = false;
+    });
+
+
+  }
+
+  async searchProduct()  {
+    this.products = [];
+    this.isLoading = true;
+    //await this.getCategories();
+    await this.getProducts().then((resp) => {
+      this.isLoading = false;
+    });
+
+
   }
 }

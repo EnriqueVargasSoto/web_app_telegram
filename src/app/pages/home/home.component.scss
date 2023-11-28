@@ -20,10 +20,16 @@
 
 .texto-truncado {
   display: -webkit-box;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2; /* Muestra el texto en 2 líneas */
   line-height: 1.4em; /* Altura de línea para ajustar el espacio entre líneas */
-  max-height: 2.8em; /* Máxima altura permitida (2 líneas * altura de línea) */
+  //max-height: 2.8em; /* Máxima altura permitida (2 líneas * altura de línea) */
+  height: 3em; /* Ajusta esto según el tamaño de tu texto */
+}
+
+.h-screen {
+  height: 85vh;
 }
