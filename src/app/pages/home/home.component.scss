@@ -33,3 +33,15 @@
 .h-screen {
   height: 85vh;
 }
+
+.row-container {
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos en el centro */
+  justify-content: flex-start; /* Alinea los elementos al inicio de la fila */
+  gap: 10px; /* Espacio entre el select y el botón */
+}
+
+.select-product {
+  flex-grow: 1; /* Ocupa el espacio disponible */
+  /* Estilos adicionales para el select aquí */
+}
