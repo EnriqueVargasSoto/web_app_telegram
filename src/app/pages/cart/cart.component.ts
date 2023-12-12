@@ -42,6 +42,8 @@ export class CartComponent {
   }
 
   guardarPedido(){
+    if (this.carrito.length > 0) {
 
+    }
   }
 }
