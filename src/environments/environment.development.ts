@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://backend-pos.atiendo.pe/api/',//'http://127.0.0.1:8000/api/',//'http://www.valorx.net:8080/Magicxpi4.12/MgWebRequester.dll?appname=IFSValorX&prgname=HTTP&arguments=-AHTTPVLXRest%23ListItems',
+  apiUrl: 'http://localhost:8000/api/',//'https://backend-pos.atiendo.pe/api/',//'http://127.0.0.1:8000/api/',//'http://www.valorx.net:8080/Magicxpi4.12/MgWebRequester.dll?appname=IFSValorX&prgname=HTTP&arguments=-AHTTPVLXRest%23ListItems',
   Compania : '0054',
   Sucursal : '02',
   lista_precio: '1'

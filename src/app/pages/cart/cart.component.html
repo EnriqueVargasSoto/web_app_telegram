@@ -37,3 +37,56 @@
 
   </div>-->
 </div>
+<div class="flow-root" style="padding: 5%;">
+  <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700 overflow-y-auto" style="height: 72vh;padding: 2%;">
+    <li class="py-3 sm:py-4" *ngFor="let item of carrito; let i = index" >
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <img class="w-8 h-8 rounded-full" src="../../../assets/logo.svg" alt="Neil image" style="width: 3.5rem;">
+            </div>
+            <div class="flex-1 min-w-0 ms-4">
+                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                    {{item.item_dsc}}
+                </p>
+                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                    {{item.marca_dsc}} - {{item.categoria_dsc}}
+                </p>
+                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                  Cantidad: {{item.cantidad}}
+                </p>
+                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                  Monto: {{item.monto.toFixed(2)}}
+                </p>
+            </div>
+
+            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white gap-5">
+
+                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="text-white start-2 end-2.5 bottom-2.5 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" (click)="removeCart(i)">-</button>
+
+            </div>
+        </div>
+    </li>
+
+  </ul>
+  <hr class="h-px my-0 bg-gray-200 border-0 dark:bg-gray-700">
+          <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+              <li class="py-3 sm:py-4">
+                  <div class="flex items-center" >
+                      <div class="flex-1 min-w-0 ms-4">
+                          <p class="text-sm font-medium text-gray-900 truncate dark:text-white" style="font-size: 1.1rem;">
+                              Total: {{total.toFixed(2)}}
+                          </p>
+
+                          <!--<p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            {{client.tipodocid}} - {{client.nrodocide}}
+                        </p>
+                          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                              {{client.dircliente}}
+                          </p>-->
+                      </div>
+
+                  </div>
+              </li>
+              <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" style="width: 100%;" (click)="guardarPedido()">Realizar Pedido</button>
+          </ul>
+</div>

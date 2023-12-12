@@ -14,7 +14,9 @@ export class CartService {
     this.cart.push(product);
   }
 
-  deleteCart(product: Product){}
+  deleteCart(indice: any){
+    this.cart.splice(indice, 1);
+  }
 
   countCart(){
     return this.cart.length;

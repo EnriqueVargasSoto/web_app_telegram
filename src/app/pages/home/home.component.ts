@@ -143,7 +143,10 @@ export class HomeComponent {
   }
 
   addCart(product: Product){
-    this.cart.addCart(product);
+    let auxProduct: any = product;
+    auxProduct['cantidad'] = 1;
+    auxProduct['monto'] = 1 * auxProduct['precio'];
+    this.cart.addCart(auxProduct);
   }
 
   toCart(){
