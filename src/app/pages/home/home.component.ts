@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ApiService } from "../../utils/api/api.service";
 import { environment } from 'src/environments/environment.development';
 import { Category } from 'src/app/models/Category.model';
+import { CartService } from 'src/app/utils/cart/cart.service';
+import { Product } from 'src/app/models/Product.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +18,22 @@ export class HomeComponent {
 
   pagination: number = 0;
   filtro: string = "";
-  products: any[] =[];
+  products: Product[] =[];
   paginas: number = 0;
   selectFiltro = "";
 
-  constructor( private apiService: ApiService){}
+  pagesPerGroup = 5;
+
+  private localStorageKey = 'user';
+  usuario: any;
+
+  constructor( private apiService: ApiService, private cart: CartService, private router: Router){}
 
   async ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    const userJson = localStorage.getItem(this.localStorageKey);
+    this.usuario = JSON.parse(userJson!);
     this.isLoading = true;
     await this.getCategories();
     await this.getProducts().then((resp) => {
@@ -35,10 +45,10 @@ export class HomeComponent {
   async getProducts() {
 
     let body = {
-      'lista_precio' : environment.lista_precio,
+      'lista_precio' : this.usuario['listprecio'],//environment.lista_precio,
       'pagina' : this.pagination,
-      'filtroxnombre' : this.filtro.toUpperCase(),
-      'filtroxcategoria' : this.selectFiltro,
+      'filtroxnombre' : '%'+this.filtro.toUpperCase(),
+      'filtroxcategoria' : this.selectFiltro == '--Selecciones categoría--' ? "" : this.selectFiltro ,
       'compania' : environment.Compania,
       'sucursal' : environment.Sucursal
     };
@@ -87,5 +97,56 @@ export class HomeComponent {
     });
 
 
+  }
+
+  count(){
+    return this.cart.countCart();
+  }
+
+  generateRange(): number[] {
+    return Array(this.paginas).fill(0).map((x, i) => i + 1);
+  }
+
+
+  // Método para obtener el grupo actual de páginas con puntos suspensivos
+  getCurrentPageGroupWithEllipsis(): (number | string)[] {
+    const start = Math.floor((this.pagination - 1) / this.pagesPerGroup) * this.pagesPerGroup;
+    const currentPageGroup = this.generateRange().slice(start, start + this.pagesPerGroup);
+
+    const result: (number | string)[] = [];
+    const totalPages = this.paginas;
+
+    if (currentPageGroup[0] > 1) {
+      result.push(1);
+      if (currentPageGroup[0] > 2) {
+        result.push('...'); // Agrega puntos suspensivos si hay páginas intermedias
+      }
+    }
+
+    result.push(...currentPageGroup);
+
+    if (currentPageGroup[currentPageGroup.length - 1] < totalPages) {
+      if (currentPageGroup[currentPageGroup.length - 1] < totalPages - 1) {
+        result.push('...'); // Agrega puntos suspensivos si hay páginas intermedias
+      }
+      result.push(totalPages);
+    }
+
+    return result;
+  }
+
+  handlePageClick(page: number | string): void {
+    if (typeof page === 'number') {
+      this.pagination = page;
+    }
+    // Puedes agregar lógica adicional si es necesario
+  }
+
+  addCart(product: Product){
+    this.cart.addCart(product);
+  }
+
+  toCart(){
+    this.router.navigate(['cart']);
   }
 }
