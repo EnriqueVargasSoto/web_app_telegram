@@ -3,7 +3,9 @@ import { ApiService } from 'src/app/utils/api/api.service';
 import { CartService } from 'src/app/utils/cart/cart.service';
 import { environment } from 'src/environments/environment';
 import { Modal } from 'flowbite';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-cart',
@@ -56,6 +58,8 @@ export class CartComponent {
 
   async guardarPedido(){
 
+    const fechaActual = moment();
+
     let items: any[] = [];
 
     for (let i = 0; i < this.carrito.length; i++) {
@@ -72,12 +76,13 @@ export class CartComponent {
     }
 
     let data: any = {
+      "pedido_origen" : "012",
       "nro_pedido_origen" : 1234567890,
-      "fecha_pedido" : "2023-12-12",
-      "vendedor" : "10098407338",
-      "centro_distribucion" : "2",
+      "fecha_pedido" : fechaActual.format('YYYY-MM-DD'),//"2023-12-12",
+      "vendedor" : "4643",
+      "centro_distribucion" : "1",
       "zona" : "2000",
-      "ruta" : "2097",
+      "ruta" : "10002",
       "forma_pago" : "001",
       "moneda" : "PEN",
       "fecha_entrega" : null,
@@ -94,7 +99,7 @@ export class CartComponent {
               "direccion_despacho" : "",
               "ubigeo_dirdespacho" : this.usuario['user_ubigeo'],
               "telefono" : this.usuario['user_phone'],
-              "modulo" : "9720",
+              "modulo" : "10002",
               "latitud" : "-16.47293217480",
               "longitud" : "-71.52866047464",
               "items" : items
