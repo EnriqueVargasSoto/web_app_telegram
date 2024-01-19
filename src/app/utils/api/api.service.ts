@@ -43,7 +43,7 @@ export class ApiService {
   logout(): void {
     localStorage.removeItem(this.localStorageKey);
     this.isAuthenticated = false;
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   isLoggedIn(): boolean {

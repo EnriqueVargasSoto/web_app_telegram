@@ -45,9 +45,9 @@ export class HomeComponent {
   async getProducts() {
 
     let body = {
-      'lista_precio' : this.usuario['listprecio'],//environment.lista_precio,
+      'lista_precio' : environment.lista_precio,
       'pagina' : this.pagination,
-      'filtroxnombre' : '%'+this.filtro.toUpperCase(),
+      'filtroxnombre' : this.filtro.toUpperCase(),
       'filtroxcategoria' : this.selectFiltro == '--Selecciones categoría--' ? "" : this.selectFiltro ,
       'compania' : environment.Compania,
       'sucursal' : environment.Sucursal
@@ -151,5 +151,9 @@ export class HomeComponent {
 
   toCart(){
     this.router.navigate(['cart']);
+  }
+
+  logout(){
+    this.apiService.logout();
   }
 }
