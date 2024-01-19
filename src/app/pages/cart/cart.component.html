@@ -42,7 +42,7 @@
     <li class="py-3 sm:py-4" *ngFor="let item of carrito; let i = index" >
         <div class="flex items-center">
             <div class="flex-shrink-0">
-                <img class="w-8 h-8 rounded-full" src="../../../assets/logo.svg" alt="Neil image" style="width: 3.5rem;">
+                <img class="w-8 h-8 rounded-full" src="{{item.item_url}}" alt="Neil image" style="width: 3.5rem;">
             </div>
             <div class="flex-1 min-w-0 ms-4">
                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">

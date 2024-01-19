@@ -79,7 +79,7 @@ export class CartComponent {
       "pedido_origen" : "012",
       "nro_pedido_origen" : 1234567890,
       "fecha_pedido" : fechaActual.format('YYYY-MM-DD'),//"2023-12-12",
-      "vendedor" : "4643",
+      "vendedor" : "62636465",
       "centro_distribucion" : "1",
       "zona" : "2000",
       "ruta" : "10002",
